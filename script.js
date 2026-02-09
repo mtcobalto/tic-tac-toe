@@ -1,11 +1,62 @@
+
+    const gameEndDialog = document.getElementById('end-dialog');
+    const boardTiles= document.querySelectorAll(".board-tile")
+    const restartButton =document.getElementById('restart-button')
+    let currentTile;
+    let player1=createPlayer('Manuel','X')
+    let player2=createPlayer('Constanza','O')
+    let continueGame=true
+    let currentPlayer=player1;
+    let roundNumber=0
+
+    boardTiles.forEach((tile,index)=>{
+        tile.addEventListener("mouseenter", () => {
+            if (tile.textContent==""){
+                tile.textContent=currentPlayer.marker
+            }
+        });
+
+        tile.addEventListener("mouseleave", ()=>{
+            updateTile(index)
+        })
+
+        tile.addEventListener("click",()=>{
+            if (Gameboard.boardArray[index] !=="") return
+            console.log(Gameboard.boardArray[index])
+            playRound(currentPlayer,index);
+            console.log(roundNumber)
+            switchPlayer() 
+        })
+    });
+
+    closeButton.addEventListener('click', () => {
+    gameEndDialog.close();
+    resetBoard();
+    });
+
+    restartButton.addEventListener('click',() => {
+        resetBoard();
+    } )
+
 let Gameboard= (function createGameboard (){
-    const boardArray = new Array (9);
+    const boardArray = Array(9).fill("");
     const Gameboard = ()=>{
         return {boardArray}
     } 
 
     return(Gameboard());
 })();
+
+
+function createPlayer(name,marker){
+    return{name,marker};
+};
+
+
+function updateTile(i){
+        boardTiles[i].textContent=Gameboard.boardArray[i]
+} 
+
 
 
 function checkForWin (){
@@ -30,79 +81,42 @@ function checkForWin (){
 }
 
 
-
-
-const array1=[3,4,5];
-
-
-function createPlayer(name,marker){
-    return{name,marker};
-};
-
-
 function playRound (player,position){
-
+    roundNumber++
     Gameboard.boardArray[position] = player.marker;
+    console.log(Gameboard.boardArray)
+    updateTile(position)
     if (checkForWin(Gameboard.boardArray)){
-        console.log(`Game is over, ${player.marker} wins` )
-        return 'Game is over';
+        console.log(`Game is over, ${player.name} wins` )
+        gameEndDialog.showModal();
+        continueGame=false;
     }
 
-    else{
-        return Gameboard;
+    else if (roundNumber==9 ){
+        console.log(`Game is over, it is a tie` ) 
+        gameEndDialog.showModal();
     }
+
 };
 
 
-
-let player1=createPlayer('Manuel','X')
-let player2=createPlayer('Constanza','O')
-
-
-function getCurrentPlayer (currentRound,player1,player2){
-    if (currentRound%2 == 0) {
-        currentPlayer = player1;
-        
-    }  
-
-    else{
-        currentPlayer=player2;
+function switchPlayer(){
+    if (currentPlayer==player1){
+        currentPlayer=player2
     }
-
-    return currentPlayer;
+    else (currentPlayer=player1)
 }
 
-function playGame(player1,pĺayer2,Gameboard){
-    let roundCounter = 0;
-    let currentPlayer;
-
-
-
-    getCurrentPlayer(roundCounter,player1,player2)
-    playRound(currentPlayer, Gameboard)
+function resetBoard(){
+    currentPlayer=player1
+    console.log("hey")
+    roundNumber=0
+    for (let i = 0; i < Gameboard.boardArray.length; i++) {
+        Gameboard.boardArray[i]="";
+        updateTile(i);
+    }
 }
 
-playRound(player1,4)
-console.log(Gameboard.boardArray)
-
-
-playRound(player2,1)
-console.log(Gameboard.boardArray)
-
-playRound(player1,5)
-console.log(Gameboard.boardArray)
-
-playRound(player2,8)
-console.log(Gameboard.boardArray)
-
-playRound(player1,6)
-console.log(Gameboard.boardArray)
-
-playRound(player2,7)
-console.log(Gameboard.boardArray)
-
-playRound(player1,2)
-console.log(Gameboard.boardArray)
 
 
 
