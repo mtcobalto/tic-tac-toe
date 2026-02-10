@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Land of the Logiticians</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <dialog id="start-dialog">
+        <form  action="">
+            <h2>Welcome to the Tic Tac Toe</h2>
+            <p>I am Joe Tic Tac Toe, I will be your guide, please enter your names dear guests:</p>
+            <div>
+                <label for="first-player">Player 1</label>
+                <input type="text" id="first-player" name="first-player" value="Eve">
+            </div> 
+            <div>
+                <label for="second-player">Player 2</label>
+                <input type="text" id="second-player" name="second-player" value="Thorenmann Ironfist Slayer of Kings III Jr">
+            </div>
+            
+        </form>
+            <button id="start-button">Begin the Trials</button>
+
+    </dialog>
+
+    <dialog id="end-dialog">
+        <h2>Game is over. <span id="winner"></span> </h2>
+        <p>Do you feel like playing another one? Maybe Start all over, like with everything...</p>
+        <div class="end-buttons">
+            <button id="close-button">Next Game</button>
+            <button id="start-over">Start Over</button>
+        </div>
+    </dialog>
+
+    <div class="header">
+        <h1>Odin Tic Tac Toe</h1>
+    </div>
+
+
+    <div class="game">
+        <p id="instructions"><strong>Instructions:</strong> Joe here! Let me tell you how this is going to go. 
+            <span id="player1">Player 1</span> will take the <span><strong>X</strong> </span> marker, while 
+            <span id="player2">Player 2</span> will take the <span><strong>O</strong></span> 
+        marker. Per convention on how numbers work, Player 1 will go first, while Player 2 second (duh).
+        There are counters indicating the wins for each player, so play until your hearts are satisfied. 
+        You can restart the board if you want to redo the current round, or begin anew if you like, just press the buttons. Cheers!!!
+       </p>
+        <div class="score-container">
+            
+            <div class="board-container">
+                <div class="board-tile"></div>
+                <div class="board-tile"></div>
+                <div class="board-tile"></div>
+                <div class="board-tile"></div>
+                <div class="board-tile"></div>
+                <div class="board-tile"></div>
+                <div class="board-tile"></div>
+                <div class="board-tile"></div>
+                <div class="board-tile"></div>
+            </div>
+            <div id="scores">
+                <h2>Scores</h2>
+                <p>Player 1</p>
+                <p>0</p>
+
+                <p>Player2</p>
+                <p>0</p>
+
+
+            </div>
+        </div>
+        <div>
+            <button id="restart-button">Restart Board</button>
+            <button id="reset-button"> Reset Scores</button>
+            <button id="new-players">New Players</button>
+        </div>
+
+    </div>
+    
+</body>
+</html>
